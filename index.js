@@ -11,13 +11,17 @@ for (var i = 0; i < numberOfDrumButtons; i++) {
 
         makeSound(buttonInnerHTML);
 
+        // Add animation to button when clicked
+        buttonAnimation(buttonInnerHTML);
+
         
     })
 }
 
 // Detecting Keyboard Press
 document.addEventListener('keydown', function(e){
-    makeSound(e.key)
+    makeSound(e.key);
+    buttonAnimation(e.key);
 })
 
 addEventListener('keydown', function(e){
@@ -71,20 +75,16 @@ function makeSound(key){
     }
 }
 
+function buttonAnimation(currentKey){
+    var activeButton = document.querySelector("."+currentKey);
+    activeButton.classList.add("pressed");
 
+    setTimeout(function(){
+        activeButton.classList.remove("pressed");
+    }, 100)
 
-
-function HouseKeeper (yearsOfExperience, name, cleaningRepertoire){
-    this.yearsOfExperience = yearsOfExperience;
-    this.name = name;
-    this.cleaningRepertoire = cleaningRepertoire;
-    this.clean = function() {
-        alert('My name is ' + this.name + '. May I clean your bathroom?')
-    }
+    setTimeout();
+    
 }
 
-var HouseKeeper1 = new HouseKeeper(12, 'Jane', ['bathroom', 'lobby', 'bedroom'])
 
-console.log(HouseKeeper1.cleaningRepertoire[1]); 
-
-HouseKeeper1.clean()
